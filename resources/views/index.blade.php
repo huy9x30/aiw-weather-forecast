@@ -6,6 +6,10 @@
 		<link rel="stylesheet" href="{{ asset("/css/style.css") }}">
 	</head>
 	<body>
+		<div class="header">
+			<h1>Ha Noi</h1>
+			<span id="time_span"></span>
+		</div>
 		<main class="container">
 		    <div class="card-wrapper">
 					@foreach ($weather_forecasts as $detail)
@@ -22,11 +26,27 @@
 		                </div>
 		            </div>
 		            <div class="card-info">
-									{{ $detail['day'] }}
+									{{ str_replace('w/', 'with', $detail['day']) }}
 								</div>
 		        </section>
 						@endforeach
 		    </div>
 		</main>
+		<script type="text/javascript">
+			function updateTime(){
+				var currentTime = new Date()
+				var hours = currentTime.getHours()
+				var minutes = currentTime.getMinutes()
+				var seconds = currentTime.getSeconds()
+
+				if (minutes < 10) { minutes = "0" + minutes }
+				if (seconds < 10) { seconds = "0" + seconds }
+				var t_str = hours + ":" + minutes + ":" + seconds + " ";
+				
+				if(hours > 11){ t_str += "PM"; } else { t_str += "AM"; }
+				document.getElementById('time_span').innerHTML = t_str;
+			}
+			setInterval(updateTime, 1000);
+		</script>
 	</body>
 </html>

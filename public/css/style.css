@@ -11,12 +11,17 @@ body{
     text-rendering: optimizeLegibility;
     background-color: rgb(25,35,45);
 }
+
+.header {
+  text-align: center;
+  margin-bottom: 5%;
+}
+
 ::selection{
     background-color: transparent;
 }
 .container{
-    width: 100vw;
-    height: 100vh;
+    height: 80%;
     display:flex;
 }
 .card-wrapper{
